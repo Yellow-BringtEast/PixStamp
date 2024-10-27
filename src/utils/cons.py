@@ -1,0 +1,2 @@
+TRANSPARENT = (0, 0, 0, 0)
+GRAY = '#CBCBC9'
