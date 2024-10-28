@@ -4,6 +4,7 @@ from src.utils.cons import TRANSPARENT, GRAY
 from src.utils.pic_utils import text_to_image, concatenate_image, padding_image, append_image_by_side, \
     resize_image_with_width
 
+# 常量
 NORMAL_HEIGHT = 1000
 SMALL_HORIZONTAL_GAP = Image.new('RGBA', (50, 20), color=TRANSPARENT)
 MIDDLE_HORIZONTAL_GAP = Image.new('RGBA', (100, 20), color=TRANSPARENT)
@@ -44,6 +45,7 @@ def add_watermark(file_path, layout):
                                     is_bold=layout.bold_font_lb,
                                     fill=layout.font_color_lb)
         left = concatenate_image([left_top, empty_padding, left_bottom])
+
         # 填充右边的文字内容
         right_top = text_to_image(content=layout.right_top_text,
                                   font=layout.font,

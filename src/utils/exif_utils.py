@@ -8,7 +8,12 @@ from src.exceptions import ExifNotFound
 warnings.filterwarnings('ignore')
 
 
-def extract_exif(file_path):
+def extract_exif(file_path: str) -> dict:
+    """
+    提取照片中的 exif 信息
+    :param file_path: 照片路径
+    :return: exif 字典
+    """
     img = Image.open(file_path)
     exif = img._getexif()
 
@@ -34,11 +39,3 @@ def extract_exif(file_path):
         readable_exif['ISOSpeedRatings'] = f'ISO{readable_exif['ISOSpeedRatings']}'
 
     return readable_exif
-
-
-if __name__ == '__main__':
-    print(extract_exif(r'E:\semi-utils\output\满月.jpg'))
-
-
-
-

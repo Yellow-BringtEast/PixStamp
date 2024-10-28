@@ -3,6 +3,7 @@ from configparser import ConfigParser
 
 from PIL import Image, ImageFont
 
+# 资源路径
 LOGOS_PATH = os.path.abspath(os.path.join(os.path.abspath(__file__), '..', '..', '..', 'assets/logos'))
 FONT_PATH = os.path.abspath(os.path.join(os.path.abspath(__file__), '..', '..', '..', 'assets/fonts'))
 CONFIG_PATH = os.path.abspath(os.path.join(os.path.abspath(__file__), '..', 'config'))
