@@ -61,8 +61,9 @@ def add_watermark(file_path, layout):
 
     # 将左右两边的文字内容等比例缩放到相同的高度
     max_height = max(left.height, right.height)
-    left = padding_image(left, int(max_height * padding_ratio), 'tb')
-    right = padding_image(right, int(max_height * padding_ratio), 't')
+    padding_size = int(max_height * padding_ratio)
+    left = padding_image(left, padding_size, 'tb')
+    right = padding_image(right, padding_size, 't')
     right = padding_image(right, left.height - right.height, 'b')
 
     logo = layout.logo
@@ -104,5 +105,11 @@ def add_watermark(file_path, layout):
 
     # 更新图片对象
     result = ImageOps.exif_transpose(result).convert('RGB')
+
+    if layout.border_enable:
+        result = padding_image(result, int(min(result.width, result.height) * 0.05), 'tlr', color='#ffffff')
+
     result = ImageQt.toqpixmap(result)
     return result
+
+

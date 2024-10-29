@@ -21,6 +21,7 @@ class LayoutModel(FontModel, LogosModel):
         self.layout_parser = ConfigParser()
         self.layout_parser.read(os.path.join(CONFIG_PATH, 'layout_config.cfg'))
 
+        self.border_enable = self.layout_parser.getint(style, 'border_enable')
         self.logo_position = self.layout_parser.get(style, 'logo_position')
         self.logo_enable = self.layout_parser.getint(style, 'logo_enable')
         self.is_logo_left = self.layout_parser.getint(style, 'is_logo_left')

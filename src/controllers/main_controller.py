@@ -152,7 +152,8 @@ class MainController(QMainWindow, Ui_MainWindow):
         # 如果有文件夹被打开，展示第一张照片并重置 self.files_path、self.to_show_images、self.current_index
         # 确保清空之前已经保存的信息
         if folder_name:
-            file_names = [folder_name + '/' + file for file in os.listdir(folder_name)]
+            file_names = [folder_name + '/' + file for file in os.listdir(folder_name) if
+                          os.path.isfile(folder_name + '/' + file)]
             self.to_show_images = copy.deepcopy(file_names)
             self.displayImage(file_names[0])
             self.files_path = file_names
