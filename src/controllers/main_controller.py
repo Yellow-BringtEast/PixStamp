@@ -1,10 +1,9 @@
 import copy
 import os
-from fileinput import filename
 
 from PIL.Image import Image
 from PySide6.QtCore import Qt, QObject, QEvent
-from PySide6.QtGui import QPixmap
+from PySide6.QtGui import QPixmap, QIcon
 from PySide6.QtWidgets import QMainWindow, QFileDialog, QStatusBar, QApplication
 
 from src.controllers.watermark_controller import add_watermark
@@ -12,6 +11,9 @@ from src.exceptions import ExifNotFound
 from src.models import exif_model
 from src.models.layout_models import LayoutModel
 from ui.main_ui import Ui_MainWindow
+
+ICON_DIR = os.path.abspath(
+    os.path.join(os.path.abspath(__file__), '..', '..', '..', 'assets', 'icons', 'stamps-famous.svg'))
 
 
 class MainController(QMainWindow, Ui_MainWindow):
@@ -32,6 +34,7 @@ class MainController(QMainWindow, Ui_MainWindow):
 
         # 初始化UI界面
         self.setupUi(self)
+        self.setWindowIcon(QIcon(ICON_DIR))
 
         # 确保鼠标移动到菜单栏时，状态栏的信息不被刷新
         self.menubar.installEventFilter(self)
@@ -354,7 +357,6 @@ class MainController(QMainWindow, Ui_MainWindow):
         if folder:
             i = 1
             for index, file in to_save_img:
-
                 save_path = f'{folder}/{self.files_path[index].split('/')[-1].split('.')[0]}.png'
                 file.save(save_path)
 
